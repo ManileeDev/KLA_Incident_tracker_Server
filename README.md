@@ -55,6 +55,7 @@ OpenAPI documentation: `http://localhost:8000/docs`
 | --- | --- | --- |
 | `GET` | `/auth/users` | List active users |
 | `POST` | `/auth/signin` | Sign in |
+| `POST` | `/auth/signup` | Create an account |
 | `GET` | `/incidents` | List incidents with filters and pagination |
 | `POST` | `/incidents` | Create an incident |
 | `GET` | `/incidents/{id}` | Get incident details |

@@ -82,3 +82,38 @@ class StatusUpdate(BaseModel):
 class SignInRequest(BaseModel):
     username: str
     password: str
+
+
+class SignUpRequest(BaseModel):
+    model_config = ConfigDict(extra="forbid")
+
+    username: str
+    display_name: str
+    password: str
+
+    @field_validator("username")
+    @classmethod
+    def validate_username(cls, value: str) -> str:
+        value = value.strip()
+        if not value:
+            raise ValueError("username must not be empty")
+        if len(value) > 100:
+            raise ValueError("username must be 100 characters or fewer")
+        return value
+
+    @field_validator("display_name")
+    @classmethod
+    def validate_display_name(cls, value: str) -> str:
+        value = value.strip()
+        if not value:
+            raise ValueError("display_name must not be empty")
+        if len(value) > 150:
+            raise ValueError("display_name must be 150 characters or fewer")
+        return value
+
+    @field_validator("password")
+    @classmethod
+    def validate_password(cls, value: str) -> str:
+        if not value:
+            raise ValueError("password must not be empty")
+        return value
